@@ -1,3 +1,4 @@
+/*MAIN STYLING: TITLE, HEADER, NAV*/
 *{
     margin:0;
     padding:0;
@@ -7,12 +8,14 @@
 body {
     background-color: #8f8d86;
 }
+
 .heading {
     text-align: center;
     background-color: #730909;
     color: white;
     padding:20px;
 }
+
 nav{
     display: flex;
     justify-content: center;
@@ -108,4 +111,19 @@ a:hover{
     font-size: 20px;
     padding:20px;
 }
+.mainContainer {
+    display: flex;
+    text-align: center;
+    background-color: #8f8d86;
+    color: white;
+    padding:20px;
+}
+.today {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    color: black;
+    margin: 30px;
 
+}
