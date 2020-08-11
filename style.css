@@ -1,0 +1,111 @@
+*{
+    margin:0;
+    padding:0;
+    border-style: border-box;
+    font-family: poppins;
+}
+body {
+    background-color: #8f8d86;
+}
+.heading {
+    text-align: center;
+    background-color: #730909;
+    color: white;
+    padding:20px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #383732;
+}
+.navSpan {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #383732;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+a:hover{
+    text-decoration: none;
+    color:#8f8d86;
+    cursor: pointer;
+}
+.today {
+    background-color: white;
+    justify-content: center;
+    color: #730909;
+    text-align: center;
+    height:325px;
+    margin:20px;
+    border-radius:15px;
+    box-shadow: 3px 3px #383732;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top:10px;
+}
+.todays-stats{
+    text-align:center; 
+    font-size: 30px; 
+    color:white;
+    padding:15px;
+    font-weight: bold;
+    text-shadow:2px 2px #383732;
+}
+#total-cals{
+    font-size: 50px;
+    padding:75px;
+}
+
+/* ----------------FOOD DIARY STYLING--------------------*/
+
+#food-search{
+    font-size: 30px;
+    width:300px;
+    resize: none;
+}
+#food-search-button{
+    font-size: 30px;
+    background-color: #730909;
+    color:white
+}
+.food-daily-stats-cont{
+    background-color: white;
+    font-size: 30px;
+    height:500px;
+}
+.meal{
+    background-color: #730909;
+    margin-bottom:10px;
+    color:white;
+    padding:10px
+}
+.total{
+    bottom:0;
+    right:0;
+    padding:10px;
+    font-size: 25px;
+}
+.food{
+    color:black;
+    padding:10px;
+    font-size:17px;
+}
+#food-search-output{
+    height:425px;
+    margin:15px;
+    background-color: white;
+}
+.add-food{
+    background-color: #730909;
+    color:white;
+    margin-left:10px;
+}
+#food-display{
+    font-size: 20px;
+    padding:20px;
+}
+
