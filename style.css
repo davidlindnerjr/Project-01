@@ -20,6 +20,7 @@ nav{
     text-align: center;
     background-color: #383732;
 }
+/*
 .navSpan {
     padding-left: 20px;
     padding-right: 20px;
@@ -30,6 +31,7 @@ nav{
     text-decoration: none;
     font-size: 20px;
 }
+*/
 a:hover{
     text-decoration: none;
     color:#8f8d86;
@@ -59,6 +61,19 @@ a:hover{
 #total-cals{
     font-size: 50px;
     padding:75px;
+}
+
+.navSpan::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width .3s;
+}
+.navSpan:hover::after {
+    width: 100%;
+    transition: width .3s;
 }
 
 /* ----------------FOOD DIARY STYLING--------------------*/
