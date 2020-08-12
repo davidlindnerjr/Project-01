@@ -34,7 +34,7 @@ nav{
 
 a:hover{
     text-decoration: none;
-    color:#white;
+    color:white;
     cursor: pointer;
 }
 .today {
