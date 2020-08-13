@@ -125,7 +125,7 @@ a:hover{
     padding:20px;
 }
 
-/* For todo.html */
+/*----------------------------- TODO STYLING -----------------------------*/
 
 .h2 {
     margin: 10px 0;
@@ -163,4 +163,9 @@ a:hover{
     float: right;
     margin-left: 20px;
     cursor: pointer;
+}
+
+.completed .task {
+    background-color: #2e3023;
+    color: whitesmoke;
 }
