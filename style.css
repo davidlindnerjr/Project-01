@@ -169,3 +169,29 @@ a:hover{
     background-color: #2e3023;
     color: whitesmoke;
 }
+
+
+/* ----------------------- WEATHER ----------------------------*/
+#weather-image{
+    width:75px;
+    height:75px;
+}
+
+#display-weather-image{
+    width:75px;
+    height:75px;
+}
+
+#display-todays-weather{
+    font-size: 50px;
+    margin-top:50px;
+}
+
+.weather-heading{
+    font-size: 40px;
+    margin:0;
+}
+
+.weather-nav{
+    margin:0;
+}
