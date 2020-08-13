@@ -6,6 +6,11 @@ function currentDate(){
     let today = new Date();
     let date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     $('#current-date').append(' '+date);
+    $('#day-one').html((today.getMonth()+1)+'/'+(today.getDate()+1)+'/'+today.getFullYear());
+    $('#day-two').html((today.getMonth()+1)+'/'+(today.getDate()+2)+'/'+today.getFullYear());
+    $('#day-three').html((today.getMonth()+1)+'/'+(today.getDate()+3)+'/'+today.getFullYear());
+    $('#day-four').html((today.getMonth()+1)+'/'+(today.getDate()+4)+'/'+today.getFullYear());
+    $('#day-five').html((today.getMonth()+1)+'/'+(today.getDate()+5)+'/'+today.getFullYear());
 }
 
 //---------------------------------- FOOD DIARY ---------------------------------------------------//
@@ -144,5 +149,81 @@ document.addEventListener('DOMContentLoaded', function(){
     $('.total').html('Total: '+getCalTotal);
     $('#total-cals').html(getCalTotal+' Cal');
 });
+
+//---------------------------------------- WEATHER ----------------------------------------------//
+window.addEventListener('load', ()=>{
+    let longitude;
+    let latitude;
+
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(position => {
+            longitude = position.coords.longitude;
+            latitude = position.coords.latitude;
+
+            let APIKey = "2fd3203014efb5bb2fa2f7d3334d6056";
+            let weather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&appid=${APIKey}`;
+
+            fetch(weather)
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data);
+                $('#display-todays-weather').html((Math.round(data.current.temp - 273.15)*1.80+32)+ ' &deg;F');
+                $('#display-temp').html((Math.round(data.current.temp - 273.15)*1.80+32)+ ' &deg;F');
+                $('#display-weather').html(data.current.weather[0].main);
+
+                $('#wind-speed').html(`Wind: ${data.current.wind_speed} kmph`);
+                $('#uv').html(`UV-Index: ${data.current.uvi}`);
+                $('#humidity').html(`Humidity: ${data.current.humidity}`)
+
+                $('#day-one-temp').html(`<div>${(Math.round(data.daily[0].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-two-temp').html(`<div>${(Math.round(data.daily[1].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-three-temp').html(`<div>${(Math.round(data.daily[2].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-four-temp').html(`<div>${(Math.round(data.daily[3].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-five-temp').html(`<div>${(Math.round(data.daily[4].temp.day-273.15)*1.80+32)}&deg;F`);
+            
+                let rain = "rain_cloud_emoji_sticker";
+                let sun = "sunny_emoji_sticker";
+                let cloud = "happy day cloud sticker";
+                let wind = "space wave wind sticker";
+                let giphy = "https://api.giphy.com/v1/gifs/search?api_key=bq5DOUxnP24dyoOh0cz9ZC4tEw49ka1L&limit=1&q=";
+                
+                if(data.current.weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                    });
+                }
+                else if(data.current.weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                    });
+                }
+                else if(data.current.wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                    }); 
+                }
+            });
+        });
+    }
+});
+
+
 
 
