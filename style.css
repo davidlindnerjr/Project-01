@@ -188,11 +188,60 @@ a:hover{
     margin-top:50px;
 }
 
-.weather-heading{
-    font-size: 40px;
-    margin:0;
+#weather-container{
+    margin-top:60px;
+    margin-bottom: 60px;
+    padding-bottom: 35px;
+    background-color: white;
+    border-radius: 15px;
+    text-align: center;
 }
 
-.weather-nav{
-    margin:0;
+#display-temp{
+    font-size: 50px;
+    height:200px;
+    padding-top:50px;
+    color:#8f8d86;
+}
+
+#display-weather{
+    padding-top: 25px;
+    font-size: 35px;
+    color:#8f8d86;
+}
+
+#display-other-stats{
+    padding-top: 35px;
+    color:#8f8d86;
+    font-size: 23px;
+}
+
+#wind-speed{
+    padding: 3px;
+}
+
+#uv{
+    padding: 3px;
+}
+
+#humidity{
+    padding: 3px;
+}
+
+.days-div{
+    background-color: #730909;
+    border-radius: 10px;
+    color:white;
+    margin:10px;
+    margin-left:20px;
+}
+
+.day{
+    font-size: 20px;
+    padding:10px;
+}
+
+.temp{
+    font-size: 15px;
+    padding:10px;
 }
