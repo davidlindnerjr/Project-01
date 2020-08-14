@@ -390,6 +390,27 @@ window.addEventListener('load', ()=>{
 });
 
 
+/************************************************************ TODOs *************************************************************/
+
+
+  
+        // If stored data were retrieved from localStorage, update the Array.
+        function todoDisplay(){
+
+            var notCompStoredData = JSON.parse(localStorage.getItem("Stored-Not-Completed-List"));
+
+        if (notCompStoredData !== null) {
+            var notCompletedArr = notCompStoredData;
+            console.log(notCompletedArr)
+
+            $("#to-do").html(notCompletedArr.length + " Pending Task(s)");
+        }
+    }
+
+    todoDisplay();
+
+
+
 //---------------------------------------------Budgeting--------------------------------------------------//
 
 var enterMoney=document.getElementById('enter_money');
@@ -527,24 +548,7 @@ function reload(){
 }
 
 
-/************************************************************ TODOs *************************************************************/
 
-
-  
-        // If stored data were retrieved from localStorage, update the Array.
-        function todoDisplay(){
-
-            var notCompStoredData = JSON.parse(localStorage.getItem("Stored-Not-Completed-List"));
-
-        if (notCompStoredData !== null) {
-            var notCompletedArr = notCompStoredData;
-            console.log(notCompletedArr)
-
-            $("#to-do").html(notCompletedArr.length + " Pending Task(s)");
-        }
-    }
-
-    todoDisplay();
 
 
 
