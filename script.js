@@ -167,19 +167,18 @@ window.addEventListener('load', ()=>{
             .then((response)=>response.json())
             .then((data)=>{
                 console.log(data);
-                $('#display-todays-weather').html((Math.round(data.current.temp - 273.15)*1.80+32)+ ' &deg;F');
-                $('#display-temp').html((Math.round(data.current.temp - 273.15)*1.80+32)+ ' &deg;F');
+                $('#display-todays-weather').html(Math.floor((data.current.temp - 273.15)*1.80+32)+ ' &deg;F');
+                $('#display-temp').html(`${Math.floor((data.current.temp - 273.15)*1.80+32)} &deg;F`);
                 $('#display-weather').html(data.current.weather[0].main);
 
-                $('#wind-speed').html(`Wind: ${data.current.wind_speed} kmph`);
-                $('#uv').html(`UV-Index: ${data.current.uvi}`);
-                $('#humidity').html(`Humidity: ${data.current.humidity}`)
+                $('#wind-speed').html(`Wind: ${data.current.wind_speed} mph`);
+                $('#humidity').html(`Humidity: ${data.current.humidity}%`);
 
-                $('#day-one-temp').html(`<div>${(Math.round(data.daily[0].temp.day-273.15)*1.80+32)}&deg;F`);
-                $('#day-two-temp').html(`<div>${(Math.round(data.daily[1].temp.day-273.15)*1.80+32)}&deg;F`);
-                $('#day-three-temp').html(`<div>${(Math.round(data.daily[2].temp.day-273.15)*1.80+32)}&deg;F`);
-                $('#day-four-temp').html(`<div>${(Math.round(data.daily[3].temp.day-273.15)*1.80+32)}&deg;F`);
-                $('#day-five-temp').html(`<div>${(Math.round(data.daily[4].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-one-temp').html(`<div>${Math.round((data.daily[0].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-two-temp').html(`<div>${Math.round((data.daily[1].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-three-temp').html(`<div>${Math.round((data.daily[2].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-four-temp').html(`<div>${Math.round((data.daily[3].temp.day-273.15)*1.80+32)}&deg;F`);
+                $('#day-five-temp').html(`<div>${Math.round((data.daily[4].temp.day-273.15)*1.80+32)}&deg;F`);
             
                 let rain = "rain_cloud_emoji_sticker";
                 let sun = "sunny_emoji_sticker";
@@ -187,12 +186,13 @@ window.addEventListener('load', ()=>{
                 let wind = "space wave wind sticker";
                 let giphy = "https://api.giphy.com/v1/gifs/search?api_key=bq5DOUxnP24dyoOh0cz9ZC4tEw49ka1L&limit=1&q=";
                 
+                //Graphic for main
                 if(data.current.weather[0].main === 'Clear'){
                     fetch(giphy+sun)
                     .then((response)=>response.json())
                     .then((data)=>{
                         $('#weather-image').attr('src',data.data[0].images.downsized.url);
-                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
                     });
                 }
                 else if(data.current.weather[0].main === 'Rain'){
@@ -200,7 +200,7 @@ window.addEventListener('load', ()=>{
                     .then((response)=>response.json())
                     .then((data)=>{
                         $('#weather-image').attr('src', data.data[0].images.downsized.url);
-                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
                     });
                 }
                 else if(data.current.wind_speed >= 10){
@@ -208,7 +208,7 @@ window.addEventListener('load', ()=>{
                     .then((response)=>response.json())
                     .then((data)=>{
                         $('#weather-image').attr('src', data.data[0].images.downsized.url);
-                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#display-weather').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
                     });
                 }
                 else{
@@ -216,7 +216,172 @@ window.addEventListener('load', ()=>{
                     .then((response)=>response.json())
                     .then((data)=>{
                         $('#weather-image').attr('src', data.data[0].images.downsized.url);
-                        $('#display-weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    }); 
+                }
+                //Graphic for Day One
+                if(data.daily[1].weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else if(data.daily[1].weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    });
+                }
+                else if(data.daily[1].wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    }); 
+                }
+                //Graphic for Day Two
+                if(data.daily[2].weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#day-two').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else if(data.daily[2].weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-two').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    });
+                }
+                else if(data.daily[2].wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-two').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-two').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    }); 
+                }
+                //Graphic for Day Three
+                if(data.daily[3].weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#day-three').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else if(data.daily[3].weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-three').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    });
+                }
+                else if(data.daily[3].wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-three').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-three').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    }); 
+                }
+                //Graphic for Day Four
+                if(data.daily[4].weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#day-four').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else if(data.daily[4].weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-four').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    });
+                }
+                else if(data.daily[4].wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-four').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-four').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    }); 
+                }
+                //Graphic for Day Five
+                if(data.daily[5].weather[0].main === 'Clear'){
+                    fetch(giphy+sun)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src',data.data[0].images.downsized.url);
+                        $('#day-five').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else if(data.daily[5].weather[0].main === 'Rain'){
+                    fetch(giphy+rain)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-five').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                    });
+                }
+                else if(data.daily[5].wind_speed >= 10){
+                    fetch(giphy+wind)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-five').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"></div>`);
+                    });
+                }
+                else{
+                    fetch(giphy+cloud)
+                    .then((response)=>response.json())
+                    .then((data)=>{
+                        $('#weather-image').attr('src', data.data[0].images.downsized.url);
+                        $('#day-five').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
                     }); 
                 }
             });
