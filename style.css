@@ -132,8 +132,8 @@ a:hover{
 }
 
 .container {
-    display: flexbox;
     max-width: 1000px;
+    display: flexbox;
     margin: auto;
     padding: 10px;
 }
