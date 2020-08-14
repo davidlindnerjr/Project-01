@@ -45,16 +45,108 @@
     </div>
     
     <script type="text/javascript">
+        
+        
+        
+//    Declaring Variables for two Arrays to store the Completed and Not Completed Tasks
+    var completedArr = [];
+    var notCompletedArr = [];
+
+
+    $(window).on('load', init);
+
+function init() {
+        // Parsing the JSON string to an object
+        var compStoredData = JSON.parse(localStorage.getItem("Stored-Completed-List"));
+  
+        // If stored data were retrieved from localStorage, update the Array.
+        if (compStoredData !== null) {
+            completedArr = compStoredData;
+            console.log(completedArr)
+        }
+
+        var notCompStoredData = JSON.parse(localStorage.getItem("Stored-Not-Completed-List"));
+  
+        // If stored data were retrieved from localStorage, update the Array.
+        if (notCompStoredData !== null) {
+            notCompletedArr = notCompStoredData;
+            console.log(notCompletedArr)
+        }
+
+        for (i=0; i<notCompletedArr.length; i++){
+        var task = $("<div class='task'></div>").text(notCompletedArr[i]);
+        var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
+                var p = $(this).parent();
+                p.fadeOut(function(){
+                    p.remove();
+                    var delIndex =  notCompletedArr.indexOf(p[0].innerText) 
+                    console.log(delIndex)
+                    notCompletedArr.splice(delIndex, 1)
+                    storeTextEntered();
+                })
+            })
+
+            var check = $("<i class='fas fa-check'></i>").click(function(){
+                var p = $(this).parent();
+                p.fadeOut(function(){
+                    $(".completed").append(p);
+                    p.fadeIn();
+                    completedArr.push(p[0].innerText);
+                    var delIndex =  notCompletedArr.indexOf(p[0].innerText) 
+                    console.log(delIndex)
+                    notCompletedArr.splice(delIndex, 1)
+                    storeTextEntered();
+                    
+                })
+                $(this).remove();
+            })
+
+       
+        $(".notCompleted").append(task);
+           task.append(del, check)
+
+
+        }
+
+        for (i=0; i<completedArr.length; i++){
+        var task = $("<div class='task'></div>").text(completedArr[i]);
+        var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
+                var p = $(this).parent();
+                p.fadeOut(function(){
+                    p.remove();
+                    var delIndex =  completedArr.indexOf(p[0].innerText) 
+                    console.log(delIndex)
+                    c0ompletedArr.splice(delIndex, 1)
+                    storeTextEntered();
+                })
+            })
+        }
+
+    }
+
+/********************************************************************************************/
+
+    // This function when called will store the text in an array in the input box in local storage.
+function storeTextEntered() {
+        localStorage.setItem("Stored-Completed-List", JSON.stringify(completedArr));
+        localStorage.setItem("Stored-Not-Completed-List", JSON.stringify(notCompletedArr));
+}
+
     
     $(".textArea").on("keyup", function(e){
        
-    //    13 is enter button
+            //    13 isa code used for "enter button"
        if(e.keyCode === 13 && $(".textArea").val() != "") {
+        notCompletedArr.push($(".textArea").val());
            var task = $("<div class='task'></div>").text($(".textArea").val());
             var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
                 var p = $(this).parent();
                 p.fadeOut(function(){
                     p.remove();
+                    var delIndex =  notCompletedArr.indexOf(p[0].innerText) 
+                    console.log(delIndex)
+                    notCompletedArr.splice(delIndex, 1)
+                    storeTextEntered();
                 })
             })
 
@@ -65,6 +157,12 @@
                 p.fadeOut(function(){
                     $(".completed").append(p);
                     p.fadeIn();
+                    completedArr.push(p[0].innerText);
+                    var delIndex =  notCompletedArr.indexOf(p[0].innerText) 
+                    console.log(delIndex)
+                    notCompletedArr.splice(delIndex, 1)
+                    storeTextEntered();
+                    
                 })
                 $(this).remove();
             })
@@ -73,10 +171,48 @@
 
            task.append(del, check)
 
+          
+
         //    clearing the input box
         $(".textArea").val("");
+
+        storeTextEntered();
+        console.log(completedArr)
+        console.log(notCompletedArr)
        }
     })
+    
+//     $(".textArea").on("keyup", function(e){
+       
+//     //    13 is enter button
+//        if(e.keyCode === 13 && $(".textArea").val() != "") {
+//            var task = $("<div class='task'></div>").text($(".textArea").val());
+//             var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
+//                 var p = $(this).parent();
+//                 p.fadeOut(function(){
+//                     p.remove();
+//                 })
+//             })
+
+
+
+//             var check = $("<i class='fas fa-check'></i>").click(function(){
+//                 var p = $(this).parent();
+//                 p.fadeOut(function(){
+//                     $(".completed").append(p);
+//                     p.fadeIn();
+//                 })
+//                 $(this).remove();
+//             })
+
+//            $(".notCompleted").append(task);
+
+//            task.append(del, check)
+
+//         //    clearing the input box
+//         $(".textArea").val("");
+//        }
+//     })
     
     </script>
 
