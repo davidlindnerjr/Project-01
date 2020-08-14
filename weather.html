@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <!--TAILWIND CSS-->
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a5753edb4f.js" crossorigin="anonymous"></script>
     <title>Weather</title>
 </head>
 <body>
     <header>
-        <div class="w-screen mt-4 heading weather-heading">
+        <div class="container-fluid heading">
             <h1>Life Organizer</h1> 
         </div>
-        <nav class="w-screen mt-4 weather-nav">
+        <nav class="nav-bar nav">
             <a href="index.html" class="navSpan">Home</a>
             <a href="todo.html" class="navSpan">To Do List</a>
             <a href="weather.html" class="navSpan">Weather</a>
@@ -24,38 +26,43 @@
         </nav>
     </header>
     <main>
-        <div class="container flex">
-            <div id="display-temp" class="flex-1 bg-white text-center"></div>
-            <div id="display-weather" class="flex-1 bg-white text-center">
-                <img id="display-weather-image" src="">
+        <div class="container" id="weather-container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12" id="display-temp"></div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12" id="display-weather"></div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12" id="display-other-stats">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12" id="wind-speed"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12" id="uv"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12" id="humidity"></div>
+                    </div>
+                </div>
             </div>
-            <div id="display-other-stats" class="flex-1 bg-white">
-                <div id="wind-speed" class="text-center"></div>
-                <div id="uv" class="text-center"></div>
-                <div id="humidity" class="text-center"></div>
-            </div>
-    
-        </div>
-        <div class="container flex">
-            <div class="flex-1 bg-white">
-                <div class="text-center" id="day-one"></div>
-                <div class="text-center" id="day-one-temp"></div>
-            </div>
-            <div class="flex-1 bg-white">
-                <div class="text-center" id="day-two"></div>
-                <div class="text-center" id="day-two-temp"></div>
-            </div>
-            <div class="flex-1 bg-white">
-                <div class="text-center" id="day-three"></div>
-                <div class="text-center" id="day-three-temp"></div>
-            </div>
-            <div class="flex-1 bg-white">
-                <div class="text-center" id="day-four"></div>
-                <div class="text-center" id="day-four-temp"></div>
-            </div>
-            <div class="flex-1 bg-white">
-                <div class="text-center" id="day-five"></div>
-                <div class="text-center" id="day-five-temp"></div>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12 days-div">
+                    <div class="day" id="day-one"></div>
+                    <div class="temp" id="day-one-temp"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12 days-div">
+                    <div class="day" id="day-two"></div>
+                    <div class="temp" id="day-two-temp"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12 days-div">
+                    <div class="day" id="day-three"></div>
+                    <div class="temp" id="day-three-temp"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12 days-div">
+                    <div class="day" id="day-four"></div>
+                    <div class="temp" id="day-four-temp"></div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12 days-div">
+                    <div class="day" id="day-five"></div>
+                    <div class="temp" id="day-five-temp"></div>
+                </div>
             </div>
         </div>
     </main>
