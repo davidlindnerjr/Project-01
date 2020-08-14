@@ -116,10 +116,13 @@ function init() {
                     p.remove();
                     var delIndex =  completedArr.indexOf(p[0].innerText) 
                     console.log(delIndex)
-                    c0ompletedArr.splice(delIndex, 1)
+                    completedArr.splice(delIndex, 1)
                     storeTextEntered();
                 })
             })
+        
+          $(".completed").append(task);
+           task.append(del);
         }
 
     }
@@ -182,37 +185,7 @@ function storeTextEntered() {
        }
     })
     
-//     $(".textArea").on("keyup", function(e){
-       
-//     //    13 is enter button
-//        if(e.keyCode === 13 && $(".textArea").val() != "") {
-//            var task = $("<div class='task'></div>").text($(".textArea").val());
-//             var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
-//                 var p = $(this).parent();
-//                 p.fadeOut(function(){
-//                     p.remove();
-//                 })
-//             })
 
-
-
-//             var check = $("<i class='fas fa-check'></i>").click(function(){
-//                 var p = $(this).parent();
-//                 p.fadeOut(function(){
-//                     $(".completed").append(p);
-//                     p.fadeIn();
-//                 })
-//                 $(this).remove();
-//             })
-
-//            $(".notCompleted").append(task);
-
-//            task.append(del, check)
-
-//         //    clearing the input box
-//         $(".textArea").val("");
-//        }
-//     })
     
     </script>
 
