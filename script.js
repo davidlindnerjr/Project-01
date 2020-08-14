@@ -411,6 +411,9 @@ window.addEventListener('load', ()=>{
 
 
 
+
+
+
 //---------------------------------------------Budgeting--------------------------------------------------//
 
 var enterMoney=document.getElementById('enter_money');
