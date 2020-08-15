@@ -6,40 +6,40 @@ __FUNCTIONALITY__
 
 TO-DO list:
 
-*Create a to-do item and save to a list.
-*When to-do item is complete the user checks the checkmark icon and the item
+* Create a to-do item and save to a list.
+* When to-do item is complete the user checks the checkmark icon and the item
  relocates to 'Completed' section.
-*User can delete a to-do item entirely by clicking the trash icon.
-*User's current number of pending tasks will be displayed on the home screen.
+* User can delete a to-do item entirely by clicking the trash icon.
+* User's current number of pending tasks will be displayed on the home screen.
 
 Weather:
 
-*Weather is based on the user's timezone and is accessed throught the 'navigator' object.
-*Weather will display:
-  *Current day's temperature
-  *Current day's weather (rain, cloud, clear, etc.)
-  *Current day's wind speed and humidity percentage
-*Weather functionality will also display the temperature for the future five days.
-*Icons will also be displayed indicating the weather (giphs of cloud, sun, rain, etc.)
-*Today's current weather will be displayed in the screen.
+* Weather is based on the user's timezone and is accessed throught the 'navigator' object.
+* Weather will display:
+  * Current day's temperature
+  * Current day's weather (rain, cloud, clear, etc.)
+  * Current day's wind speed and humidity percentage
+* Weather functionality will also display the temperature for the future five days.
+* Icons will also be displayed indicating the weather (giphs of cloud, sun, rain, etc.)
+* Today's current weather will be displayed in the screen.
 
 Budgeting:
 
-*Budgeting allows the user to enter an amount of money and split it into four 
+* Budgeting allows the user to enter an amount of money and split it into four 
  different percentage catergories (Life Expense, Extra/Fun, Food, and Savings)
-*The function output's the amount of money to be split among the four categories and 
+* The function output's the amount of money to be split among the four categories and 
 the dollar amount will appear at the top of the screen, as well as appearing on the main
 home page.
 
 Food Diary:
 
-*Food Diary allows the user to search any food their heart desires from anywhere.
-*List of searched foods will be displayed on the right.
-*The user clicks the 'plus' icon to add foor to their diary.
-*Calories for that food will be added to the total.
-*User is able to delete a food from the diary and the calories from the total by clicking
+* Food Diary allows the user to search any food their heart desires from anywhere.
+* List of searched foods will be displayed on the right.
+* The user clicks the 'plus' icon to add foor to their diary.
+* Calories for that food will be added to the total.
+* User is able to delete a food from the diary and the calories from the total by clicking
  the red 'X' icon. 
- *Total calories for the day will be displayed on the home page.
+* Total calories for the day will be displayed on the home page.
  
  __DEVELOPER_REMARKS__
   
