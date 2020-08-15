@@ -216,7 +216,7 @@ window.addEventListener('load', ()=>{
                     .then((response)=>response.json())
                     .then((data)=>{
                         $('#weather-image').attr('src', data.data[0].images.downsized.url);
-                        $('#day-one').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
+                        $('#display-weather').append(`<div><img  id="display-weather-image" src="${data.data[0].images.downsized.url}"><div>`);
                     }); 
                 }
                 //Graphic for Day One
