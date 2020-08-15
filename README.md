@@ -41,7 +41,7 @@ Food Diary:
  the red 'X' icon. 
 * Total calories for the day will be displayed on the home page.
  
- __DEVELOPER_REMARKS__
+ __DEVELOPER REMARKS__
   
   Shalpreet:
   
@@ -49,7 +49,7 @@ Food Diary:
   
   David:
   
-  __SCREENSHOTS_OF_DEPLOYED_APPLICATION__
+  __SCREENSHOTS OF DEPLOYED APPLICATION__
   
 ![Food Diary - Google Chrome 8_15_2020 2_06_52 PM](https://user-images.githubusercontent.com/65383133/90321679-ad608780-df00-11ea-870a-85778428985b.png)
 ![Food Diary - Google Chrome 8_15_2020 2_06_38 PM](https://user-images.githubusercontent.com/65383133/90321680-adf91e00-df00-11ea-9c42-0d3a958699d4.png)
