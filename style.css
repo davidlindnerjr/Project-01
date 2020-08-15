@@ -176,6 +176,17 @@ a:hover{
     padding:75px;
 }
 
+.navLink:hover{
+    text-decoration: none;
+    color:white;
+    cursor: pointer;
+}
+
+.mainBody {
+    background-color: #8f8d86;
+    height: 100vh;
+}
+
 
 /* ----------------------- WEATHER ----------------------------*/
 #weather-image{
