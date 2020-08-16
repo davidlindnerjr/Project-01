@@ -417,142 +417,150 @@ window.addEventListener('load', ()=>{
 
 
 
-//---------------------------------------------Budgeting--------------------------------------------------//
-
-var enterMoney=document.getElementById('enter_money');
-
+//----------------------------------BUDGETING-------------------------------------------------//
+var enterMoney = document.getElementById("enter_money");
 var money;
-
 //Grab the error message
-
-var error=document.getElementById('error');
-var errorManage=document.getElementById('error_manage');
-
+var error = document.getElementById("error");
+var errorManage = document.getElementById("error_manage");
 //get all manage inputs like (roomrent,accessories,emergency & saving)
-var roomrent=document.getElementById('RoomRent');
-var accessories=document.getElementById('Accessories');
-var emergency=document.getElementById('Emergency');
-var saving=document.getElementById('Saving');
-
-
-
+var roomrent = document.getElementById("RoomRent");
+var accessories = document.getElementById("Accessories");
+var emergency = document.getElementById("Emergency");
+var saving = document.getElementById("Saving");
 //get all output getelement
-
-var showRoom = document.getElementById('show_room');
-var showAccessories = document.getElementById('show_access');
-var showEmergency = document.getElementById('show_emergency');
-var showSaving = document.getElementById('show_saving');
-
-
+var showRoom = document.getElementById("show_room");
+var showAccessories = document.getElementById("show_access");
+var showEmergency = document.getElementById("show_emergency");
+var showSaving = document.getElementById("show_saving");
 //get loader gif file
-
-var loader =document.getElementById('loader');
+var loader = document.getElementById("loader");
 //get the evaluate button
-var evaluate=document.getElementById('evaluate');
-
+var evaluate = document.getElementById("evaluate");
 //get the Reset button
-var resetButton=document.getElementById('reset_button');
-//get the manage_div
-var manageDiv=document.getElementById('manage_div');
-
+var resetButton = document.getElementById("reset_button");
+//get the Manage button
+var manageDiv = document.getElementById("manage_div");
 //get result section
-
-var resultSection=document.getElementById("result_section");
-
-
+var resultSection = document.getElementById("result_section");
 //create an event
-enterMoney.addEventListener('keyup',showManageMoney);
-evaluate.addEventListener('click',showloader);
-resetButton.addEventListener('click',reload);
-
-
+enterMoney.addEventListener("keyup", showManageMoney);
+evaluate.addEventListener("click", showloader);
+resetButton.addEventListener("click", reload);
 //function to show gif loader image
-function showloader(){
-	loader.classList.remove("hidden");
-	setTimeout(validateManage,1000);
+function showloader() {
+  loader.classList.remove("hidden");
+  setTimeout(validateManage, 1000);
 }
-
-
 //function to validate input amount and show the manage section
-
-function showManageMoney(e)
-{
-
-//check whether the key entered is ENTER key or not
-if(e.keyCode==13){
-
-money = e.target.value;
-
-//validate the Input value
-
-if(isNaN(money) || money==0){
-
-	//display error message
-	error.classList.remove("hidden");
+function showManageMoney(e) {
+  //check whether the key entered is ENTER key or not
+  if (e.keyCode == 13) {
+    money = e.target.value;
+    //validate the Input value
+    if (isNaN(money) || money == 0) {
+      //display error message
+      error.classList.remove("hidden");
+    } else {
+      //move ahead & show the manage section div
+      error.classList.add("hidden");
+      manageDiv.classList.remove("hidden");
+    }
+  }
 }
-else{
-//move ahead & show the manage section div
-error.classList.add("hidden");
-manageDiv.classList.remove("hidden");
-
+function validateManage() {
+  //hide loader image
+  loader.classList.add("hidden");
+  //validate input fields
+  if (
+    roomrent.value == "" ||
+    accessories.value == "" ||
+    emergency.value == "" ||
+    saving.value == ""
+  ) {
+    errorManage.innerHTML =
+      "*Value for input fields is not given. please provide the value for all inputs";
+  } else {
+    errorManage.innerHTML = "";
+    //parse the value to integer
+    var room_per = parseInt(roomrent.value);
+    var access_per = parseInt(accessories.value);
+    var emer_per = parseInt(emergency.value);
+    var save_per = parseInt(saving.value);
+    var total = room_per + access_per + emer_per + save_per;
+    if (total > 100) {
+      errorManage.innerHTML =
+        "*The Total Percentage is exceeding 100%. Please make sure that is does not exceed 100.";
+    } else {
+      //validation is complete now calculate the percentage
+      calculate(room_per, access_per, emer_per, save_per);
+    }
+  }
 }
-}
-
-}
-
-function validateManage(){
-
-	//hide loader image
-	loader.classList.add("hidden");
-	//validate input fields
-if (roomrent.value=="" || accessories.value=="" || emergency.value=="" || saving.value==""){
-	errorManage.innerHTML="*Value for input fields is not given. please provide the value for all inputs";
-}else{
-	errorManage.innerHTML="";
-
-	//parse the value to integer
-
-	var room_per = parseInt(roomrent.value);
-	var access_per = parseInt(accessories.value);
-	var emer_per = parseInt(emergency.value);
-	var save_per = parseInt(saving.value);
-
-	var total= room_per + access_per + emer_per + save_per;
-
-	if(total> 100){
-		errorManage.innerHTML="*The Total Percentage is exceeding 100%. Please make sure that is does not exceed 100.";
-
-	}else{
-		//validation is complete now calculate the percentage
-		calculate(room_per, access_per, emer_per, save_per);
-	}
-}
-
-}
-
 //calculate percentage
-function calculate(roomrent, accessories, emergency, saving){
-	var roomrentMoney = ( roomrent/100) * money;
-	var accessproesMoney = ( accessories/100) * money;
-	var emergencyMoney = ( emergency/100) * money;
-	var savingMoney = ( saving/100) * money;
-
-
-	showRoom.innerHTML="$"+ roomrentMoney;
-	showAccessories.innerHTML= "$"+accessproesMoney;
-	showEmergency.innerHTML= "$"+emergencyMoney;
-	showSaving.innerHTML= "$"+savingMoney;
-
-	resultSection.classList.remove("hidden");
+function calculate(roomrent, accessories, emergency, saving) {
+  var roomrentMoney = (roomrent / 100) * money;
+  var accessproesMoney = (accessories / 100) * money;
+  var emergencyMoney = (emergency / 100) * money;
+  var savingMoney = (saving / 100) * money;
+  //set showroom val
+  showRoom.innerHTML = "$" + roomrentMoney;
+  console.log(showRoom.innerHTML);
+  let livingExpense = showRoom.innerHTML;
+  localStorage.setItem("livingExpense", livingExpense);
+  //set accessories val
+  showAccessories.innerHTML = "$" + accessproesMoney;
+  let extraFun = showAccessories.innerHTML;
+  localStorage.setItem("extraFun", extraFun);
+  //set emergency val
+  showEmergency.innerHTML = "$" + emergencyMoney;
+  let food = showEmergency.innerHTML;
+  localStorage.setItem("food", food);
+  //set savings val
+  showSaving.innerHTML = "$" + savingMoney;
+  let savings = showSaving.innerHTML;
+  localStorage.setItem("savings", savings);
+  resultSection.classList.remove("hidden");
 }
+document.addEventListener("DOMContentLoaded", function () {
+  var livingExpense = localStorage.getItem("livingExpense");
+  var extraFun = localStorage.getItem("extraFun");
+  var food = localStorage.getItem("food");
+  var savings = localStorage.getItem("savings");
+  if (!showRoom || !showAccessories || !showEmergency || !showSaving) {
+    return;
+  }
+  var showTodaysBudget = document.getElementById("todays-budget");
 
+  var budgetOne = $("#budget-1").addClass("todaysBudgetDiv");
+  var budgetOnePTag = $("<p>").addClass("todaysBudgetText").text(livingExpense);
+  var budgetOneTitle = $("<h3>").addClass("todaysBudgetTitle").text("Living Expense")
+  
+  var budgetTwo = $("#budget-2").addClass("todaysBudgetDiv")
+  var budgetTwoPTag = $("<p>").addClass("todaysBudgetText").text(extraFun);
+  var budgetTwoTitle = $("<h3>").addClass("todaysBudgetTitle").text("Extra/Fun")
 
+  var budgetThree = $("#budget-3").addClass("todaysBudgetDiv")
+  var budgetThreePTag = $("<p>").addClass("todaysBudgetText").text(food);
+  var budgetThreeTitle = $("<h3>").addClass("todaysBudgetTitle").text("Food")
+
+  var budgetFour = $("#budget-4").addClass("todaysBudgetDiv")
+  var budgetFourPTag = $("<p>").addClass("todaysBudgetText").text(savings);
+  var budgetFourTitle = $("<h3>").addClass("todaysBudgetTitle").text("Savings")
+
+  budgetOne.append(budgetOneTitle, budgetOnePTag);
+  budgetTwo.append(budgetTwoTitle, budgetTwoPTag);
+  budgetThree.append(budgetThreeTitle, budgetThreePTag);
+  budgetFour.append(budgetFourTitle, budgetFourPTag);
+  
+//   showTodaysBudget.append(extraFun);
+//   showTodaysBudget.append(food);
+//   showTodaysBudget.append(savings);
+});
 //reload the page
-
-function reload(){
-	location.reload();
+function reload() {
+  location.reload();
 }
-
 
 
 
