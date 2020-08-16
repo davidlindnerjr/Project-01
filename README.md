@@ -54,7 +54,7 @@ Food Diary:
   
 ![Food Diary - Google Chrome 8_15_2020 2_06_52 PM](https://user-images.githubusercontent.com/65383133/90321679-ad608780-df00-11ea-870a-85778428985b.png)
 ![Food Diary - Google Chrome 8_15_2020 2_06_38 PM](https://user-images.githubusercontent.com/65383133/90321680-adf91e00-df00-11ea-9c42-0d3a958699d4.png)
-![Todo Planner](./assets/Todo-List.gif)
+![Todo Planner](./assets/todoList.gif)
   
   
 
