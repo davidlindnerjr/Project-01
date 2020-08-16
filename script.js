@@ -404,7 +404,10 @@ window.addEventListener('load', ()=>{
             console.log(notCompletedArr)
 
             $("#to-do").html(notCompletedArr.length + " Pending Task(s)");
-        }
+        } else {
+	    $("#to-do").html("0 Pending Task(s)");
+		}
+		
     }
 
     todoDisplay();
