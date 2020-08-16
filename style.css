@@ -261,3 +261,43 @@ a:hover{
     font-size: 15px;
     padding:10px;
 }
+
+/*------------------------------Budgeting----------------------------------*/
+.budgetingContainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #730909;
+    color: white;
+    padding:20px;
+}
+.budgetingMainContainer {
+    display: flex;
+}
+.todaysBudgetText {
+    color: black;
+
+}
+.todaysBudgetDiv {
+    display: flex-box;
+    justify-content: center;
+    text-align: center;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    margin-left: 10rem;
+    font-size: large;
+}
+
+.todaysBudgetTitle {
+    color: white;
+    font-size: large;
+}
+
+.gray-blob {
+
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-left: 5.5%;
+}
