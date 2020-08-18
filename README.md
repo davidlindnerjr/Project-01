@@ -55,7 +55,7 @@ Food Diary:
   
   __LINK TO DEPLOYED APPLICATION:__
   
-  https://davidlindnerjr.github.io/Project-01/
+  https://davidlindnerjr.github.io/Life-Organizer/
   
   __SCREENSHOTS OF DEPLOYED APPLICATION__
  
