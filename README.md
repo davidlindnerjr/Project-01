@@ -58,12 +58,13 @@ Food Diary:
   https://davidlindnerjr.github.io/Project-01/
   
   __SCREENSHOTS OF DEPLOYED APPLICATION__
-  
+ 
+![Life Organizer - Google Chrome 8_18_2020 11_06_08 AM](https://user-images.githubusercontent.com/65383133/90549291-24855e00-e143-11ea-8a55-862081bec57a.png)
+![Life Organizer - Google Chrome 8_18_2020 11_06_22 AM](https://user-images.githubusercontent.com/65383133/90549299-25b68b00-e143-11ea-8096-d8931ac6db36.png)
 ![Food Diary - Google Chrome 8_15_2020 2_06_52 PM](https://user-images.githubusercontent.com/65383133/90321679-ad608780-df00-11ea-870a-85778428985b.png)
 ![Food Diary - Google Chrome 8_15_2020 2_06_38 PM](https://user-images.githubusercontent.com/65383133/90321680-adf91e00-df00-11ea-9c42-0d3a958699d4.png)
 ![Todo Planner](./assets/todoList.gif)
-  
-  
+![Life Organizer - Google Chrome 8_18_2020 11_06_57 AM](https://user-images.githubusercontent.com/65383133/90549306-2818e500-e143-11ea-9371-d553e3c7fa3b.png)
 
 MIT License
 
