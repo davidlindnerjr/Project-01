@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bc54d37597.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="mainBody">
+        <header>
+            <div class="container-fluid heading">
+                <h1>Life Organizer</h1>
+            </div>
+            <nav class="nav-bar nav">
+                <a href="index.html" class="navSpan navLink">Home</a>
+                <a href="todo.html" class="navSpan navLink">To Do List</a>
+                <a href="weather.html" class="navSpan navLink">Weather</a>
+                <a href="food.html" class="navSpan navLink">Food Diary</a>
+                <a href="budgeting.html" class="navSpan navLink">Budgeting</a>
+            </nav>
+        </header>
+
+        <main class="container">
+
+
+            <input type="text" class="textArea" placeholder="Add a task">
+
+            <div class="notCompleted">
+                <h2>Not Completed</h2>
+            </div>
+
+            <div class="completed">
+                <h2>Completed</h2>
+            </div>
+
+        </main>
+                                                     <!-- Starting JavaScript -->
+
+        <script type="text/javascript">
+
+
+
+            //    Declaring Variables for two Arrays to store the Completed and Not Completed Tasks
+            var completedArr = [];
+            var notCompletedArr = [];
+
+
+            $(window).on('load', init);
+
+            function init() {
+                // Parsing the JSON string to an object
+                var compStoredData = JSON.parse(localStorage.getItem("Stored-Completed-List"));
+
+                // If stored data were retrieved from localStorage, update the Array.
+                if (compStoredData !== null) {
+                    completedArr = compStoredData;
+                    console.log(completedArr)
+                }
+                // Parsing the JSON string to an object
+                var notCompStoredData = JSON.parse(localStorage.getItem("Stored-Not-Completed-List"));
+
+                // If stored data were retrieved from localStorage, update the Array.
+                if (notCompStoredData !== null) {
+                    notCompletedArr = notCompStoredData;
+                    console.log(notCompletedArr)
+                }
+
+                // for loop for rendering NOT COMPLETED array
+
+                for (i = 0; i < notCompletedArr.length; i++) {
+                    var task = $("<div class='task'></div>").text(notCompletedArr[i]);
+
+                    // on click function for the trash icon to remove the task from NOT COMPLETED task list
+                    var del = $("<i class='fas fa-trash-alt'></i>").click(function (e) {
+                        e.preventDefault();
+                        var p = $(this).parent();
+                        p.fadeOut(function () {
+                            p.remove();
+                            var delIndex = notCompletedArr.indexOf(p[0].innerText)
+                            console.log(delIndex)
+                            notCompletedArr.splice(delIndex, 1)
+                            storeTextEntered();
+                        });
+                    });
+ 
+                    // on click function for the check icon to move the task from NOT COMPLETED to the COMPLETED section
+                    var check = $("<i class='fas fa-check'></i>").click(function (e) {
+                        e.preventDefault();
+                        var p = $(this).parent();
+                        p.fadeOut(function () {
+                            $(".completed").append(p);
+                            p.fadeIn();
+                            completedArr.push(p[0].innerText);
+                            var delIndex = notCompletedArr.indexOf(p[0].innerText)
+                            console.log(delIndex)
+                            notCompletedArr.splice(delIndex, 1)
+                            storeTextEntered();
+                        });
+                        $(this).remove();
+                    });
+
+                    $(".notCompleted").append(task);
+                    task.append(del, check);
+                };
+
+                // for loop for rendering completed array
+
+                for (i = 0; i < completedArr.length; i++) {
+                    var task = $("<div class='task'></div>").text(completedArr[i]);
+
+                    // on click function for the trash icon to remove the task from COMPLETED task list 
+                    var del1 = $("<i class='fas fa-trash-alt'></i>").click(function (e) {
+                        e.preventDefault();
+                        var p = $(this).parent();
+                        p.fadeOut(function () {
+                            p.remove();
+                            var delIndex1 = completedArr.indexOf(p[0].innerText)
+                            console.log(delIndex1)
+                            completedArr.splice(delIndex1, 1)
+                            storeTextEntered();
+                        });
+                    });
+
+                    $(".completed").append(task);
+                    task.append(del1);
+                };
+
+            };
+
+            /********************************************************************************************/
+
+            // This function when called will store the text in the array to local storage.
+            function storeTextEntered() {
+                localStorage.setItem("Stored-Completed-List", JSON.stringify(completedArr));
+                localStorage.setItem("Stored-Not-Completed-List", JSON.stringify(notCompletedArr));
+            };
+
+
+            // This function is called when the task is entered and ENTER KEY is pressed 
+
+            $(".textArea").on("keyup", function (e) {
+
+                //    13 is a code used for "enter button"
+                if (e.keyCode === 13 && $(".textArea").val() != "") {
+                    notCompletedArr.push($(".textArea").val());
+                    var task = $("<div class='task'></div>").text($(".textArea").val());
+                    var del = $("<i class='fas fa-trash-alt'></i>").click(function () {
+                        var p = $(this).parent();
+
+                        p.fadeOut(function () {
+                            console.log(p.parent().prop('className'));
+                            var grandParent = p.parent().prop('className');
+                            p.remove();
+
+                            // the if statements will delete the tasks from the respective arrays. 
+
+                            if (grandParent === "notCompleted") {
+                                var delIndex = notCompletedArr.indexOf(p[0].innerText)
+                                console.log(delIndex)
+                                notCompletedArr.splice(delIndex, 1)
+                                storeTextEntered();
+                            };
+
+                            if (grandParent === "completed") {
+                                var delIndex1 = completedArr.indexOf(p[0].innerText)
+                                console.log(delIndex1)
+                                completedArr.splice(delIndex1, 1)
+                                storeTextEntered();
+                            };
+
+                        });
+                    });
+
+
+                    // on click function for the check icon to move the task from NOT COMPLETED to the COMPLETED section 
+                    var check = $("<i class='fas fa-check'></i>").click(function () {
+                        var p = $(this).parent();
+                        p.fadeOut(function () {
+                            $(".completed").append(p);
+                            p.fadeIn();
+                            completedArr.push(p[0].innerText);
+                            var delIndex = notCompletedArr.indexOf(p[0].innerText)
+                            console.log(delIndex)
+                            notCompletedArr.splice(delIndex, 1)
+                            storeTextEntered();
+                        });
+                        $(this).remove();
+                    });
+
+                    $(".notCompleted").append(task);
+                    task.append(del, check)
+
+                    //    clearing the input box
+                    $(".textArea").val("");
+
+                    storeTextEntered();
+                    console.log(completedArr)
+                    console.log(notCompletedArr)
+                };
+            });
+
+
+
+        </script>
+    </div>
+</body>
+
+</html>
