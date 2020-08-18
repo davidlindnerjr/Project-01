@@ -53,6 +53,10 @@ Food Diary:
   (David Lindner):
   In this application  was tasked with creating the Weather and Food Diary components of Life Organizer. When my teammates and I were brainstorming ideas on what to create     for our application we kept coming up withideas that are day to day occurences, like a to-do list. On the daily I personally use a calorie tracker and I thought that would   be a perfect addition and would be would fit the theme of our project well. I leanred a lot about using different third party APIs and how to manipulate them to get the       information that I desired. I used Nutritionix API in my Food Diary to get the calorie values of searched food by the user. The hardest part of this portion was figuring     out how to remove calories from the total once the user deletes it from the diary. I ended up having to use a '.off().on()' click event listener and that fixed all the       problems that I was coming across. Secondly, I tasked myself with creating the weather feature. It was not too difficult to figure out, as I had done it before; but I did     not want to do it the same way. I used the built in 'navigator' method to allow me to get the timezone of the user and use that to insert into the API and then display       stats from there. Altogether, it was a great time and a great experience with the team.
   
+  __LINK TO DEPLOYED APPLICATION:__
+  
+  https://davidlindnerjr.github.io/Project-01/
+  
   __SCREENSHOTS OF DEPLOYED APPLICATION__
   
 ![Food Diary - Google Chrome 8_15_2020 2_06_52 PM](https://user-images.githubusercontent.com/65383133/90321679-ad608780-df00-11ea-870a-85778428985b.png)
